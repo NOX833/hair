@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Glam Salon</title>
+
+<style>
+:root {
+    --primary: #d4af37;
+    --primary-dark: #9b7b18;
+    --bg-main: #fff7fb;
+    --bg-card: #ffffff;
+    --text-main: #222;
+    --text-muted: #666;
+    --border-color: #f1d6e5;
+    --danger: #dc3545;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+header {
+    background: #111;
+    border-bottom: 3px solid var(--primary);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.cart-btn {
+    background: var(--primary);
+    color: #111;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#cart-count {
+    background: #111;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 0.85rem;
+}
+
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1400&q=80");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero a {
+    background: var(--primary);
+    color: #111;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.products-section {
+    flex: 3;
+}
+
+.section-title {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #111;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+    transition: 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.product-img-placeholder {
+    height: 190px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: #111;
+}
+
+.product-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.product-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.btn-add {
+    width: 100%;
+    background: #111;
+    color: white;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background: var(--primary-dark);
+}
+
+.cart-sidebar {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+}
+
+.cart-title {
+    font-size: 1.25rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.cart-items-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-remove {
+    background: transparent;
+    color: var(--danger);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cart-summary {
+    border-top: 2px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.total-row {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.btn-checkout {
+    width: 100%;
+    background: var(--primary);
+    color: #111;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.btn-checkout:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">💇 Luxury Glam Salon</div>
+    <button class="cart-btn" onclick="scrollToCart()">
+        🛒 Booking List <span id="cart-count">0</span>
+    </button>
+</header>
+
+<section class="hero">
+    <h1>Hair Styles, Barber & Nails</h1>
+    <p>Look fresh, clean and beautiful with our professional salon services.</p>
+    <a href="#services">View Services</a>
+</section>
+
+<div class="container" id="services">
+
+<section class="products-section">
+    <h2 class="section-title">Our Services</h2>
+    <div class="products-grid" id="products-container"></div>
+</section>
+
+<aside class="cart-sidebar" id="cart-section">
+    <h2 class="cart-title">Booking Summary</h2>
+    <ul class="cart-items-list" id="cart-items"></ul>
+
+    <div class="cart-summary">
+        <div class="summary-row">
+            <span>Subtotal:</span>
+            <span id="subtotal-price">R0.00</span>
+        </div>
+
+        <div class="summary-row">
+            <span>Service Fee:</span>
+            <span id="tax-price">R0.00</span>
+        </div>
+
+        <div class="summary-row total-row">
+            <span>Total:</span>
+            <span id="total-price">R0.00</span>
+        </div>
+
+        <button class="btn-checkout" id="checkout-btn" disabled onclick="processCheckout()">
+            Book on WhatsApp
+        </button>
+    </div>
+</aside>
+
+</div>
+<footer class="site-footer">
+    created by Submitpro|NoxoloNyatela
+</footer>
+<script>
+const PRODUCTS = [
+    {
+        id: 101,
+        name: "Straight Back Cornrows",
+        price: 250,
+        category: "Hair Styles",
+        image: "https://i.postimg.cc/G2bnzPK5/condrow.jpg",
+        desc: "Neat and stylish cornrows for everyday beauty."
+    },
+    {
+        id: 102,
+        name: "Wig Installation",
+        price: 200,
+        category: "Hair Styles",
+        image: "https://i.postimg.cc/pTybgVNp/wig-instalation.jpg",
+        desc: "Clean wig installation with a natural-looking finish."
+    },
+    {
+        id: 103,
+        name: "Wash & Blow Dry",
+        price: 120,
+        category: "Hair Styles",
+        image: "https://i.postimg.cc/4NyPVK6m/hai-wash-and-blow-dry.jpg",
+        desc: "Hair wash, treatment and blow dry styling."
+    },
+    {
+        id: 104,
+        name: "Men's & kids Fade Cut",
+        price: 100,
+        category: "Barber",
+        image: "https://i.postimg.cc/MT4bzwTm/fade.jpg",
+        desc: "Fresh fade haircut for a clean and sharp look."
+    },
+    {
+        id: 105,
+        name: "Beard Trim",
+        price: 50,
+        category: "Barber",
+        image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80",
+        desc: "Professional beard shaping and trimming."
+    },
+    {
+        id: 106,
+        name: "Kids Haircut",
+        price: 80,
+        category: "Barber",
+        image: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80",
+        desc: "Simple and neat haircut for young boys."
+    },
+    {
+        id: 107,
+        name: "Gel Nails",
+        price: 180,
+        category: "Nails",
+        image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=80",
+        desc: "Beautiful gel polish for a glossy finish."
+    },
+    {
+        id: 108,
+        name: "Acrylic Nails",
+        price: 250,
+        category: "Nails",
+        image: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=700&q=80",
+        desc: "Strong and stylish acrylic nail set."
+    },
+    {
+        id: 109,
+        name: "Pedicure",
+        price: 150,
+        category: "Nails",
+        image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=700&q=80",
+        desc: "Relaxing foot care and polish service."
+    }
+];
+
+let cart = [];
+
+function initStore() {
+    const container = document.getElementById('products-container');
+    container.innerHTML = '';
+
+    PRODUCTS.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        card.innerHTML = `
+            <div>
+                <div class="product-img-placeholder">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-desc">${product.desc}</p>
+            </div>
+            <div>
+                <p class="product-price">R${product.price.toFixed(2)}</p>
+                <button class="btn-add" onclick="addToCart(${product.id})">Add To Booking</button>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+
+    updateCartUI();
+}
+
+function addToCart(productId) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    updateCartUI();
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const subtotalEl = document.getElementById('subtotal-price');
+    const taxEl = document.getElementById('tax-price');
+    const totalEl = document.getElementById('total-price');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    cartItemsContainer.innerHTML = '';
+
+    let totalItems = 0;
+    let subtotal = 0;
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `<li style="color: var(--text-muted); font-style: italic; padding: 1rem 0;">No salon service selected yet.</li>`;
+    } else {
+        cart.forEach(item => {
+            totalItems += item.quantity;
+            subtotal += item.price * item.quantity;
+
+            const li = document.createElement('li');
+            li.className = 'cart-item';
+
+            li.innerHTML = `
+                <div>
+                    <strong>${item.name}</strong><br>
+                    <span style="font-size:0.85rem; color:var(--text-muted);">
+                        Qty: ${item.quantity} × R${item.price.toFixed(2)}
+                    </span>
+                </div>
+                <button class="btn-remove" onclick="removeFromCart(${item.id})">Remove</button>
+            `;
+
+            cartItemsContainer.appendChild(li);
+        });
+    }
+
+    const serviceFee = subtotal * 0.05;
+    const total = subtotal + serviceFee;
+
+    cartCount.innerText = totalItems;
+    subtotalEl.innerText = `R${subtotal.toFixed(2)}`;
+    taxEl.innerText = `R${serviceFee.toFixed(2)}`;
+    totalEl.innerText = `R${total.toFixed(2)}`;
+
+    checkoutBtn.disabled = cart.length === 0;
+}
+
+function scrollToCart() {
+    document.getElementById('cart-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function processCheckout() {
+    let message = "Hello Luxury Glam Salon,%0A%0AI would like to book the following salon services:%0A%0A";
+
+    cart.forEach(item => {
+        message += "- " + item.name + " x" + item.quantity + " = R" + (item.price * item.quantity).toFixed(2) + "%0A";
+    });
+
+    const subtotal = document.getElementById("subtotal-price").innerText;
+    const serviceFee = document.getElementById("tax-price").innerText;
+    const total = document.getElementById("total-price").innerText;
+
+    message += "%0ASubtotal: " + subtotal;
+    message += "%0AService Fee: " + serviceFee;
+    message += "%0ATotal: " + total;
+    message += "%0A%0APlease confirm available date and time.";
+
+    window.open("https://wa.me/27605623095?text=" + message, "_blank");
+}
+
+window.onload = initStore;
+</script>
+
+</body>
+</html>
