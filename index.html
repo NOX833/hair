@@ -30,6 +30,8 @@ body {
     background: linear-gradient(135deg, #fff7fb 0%, #fef1f7 100%);
     color: var(--text-main);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -140,6 +142,7 @@ header {
     gap: 2.5rem;
     max-width: 1400px;
     margin: 0 auto;
+    flex: 1;
 }
 
 .products-section {
@@ -387,10 +390,42 @@ header {
 .site-footer {
     text-align: center;
     padding: 2rem;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    border-top: 1px solid var(--border-color);
+    background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.05) 100%);
+    border-top: 2px solid var(--glass-border);
     margin-top: 3rem;
+}
+
+.footer-content {
+    font-size: 0.95rem;
+}
+
+.footer-text {
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.footer-credits {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+}
+
+.footer-credits a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer-credits a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.footer-divider {
+    color: var(--text-muted);
+    margin: 0 0.5rem;
 }
 
 @media (max-width: 900px) {
@@ -463,9 +498,19 @@ header {
 </aside>
 
 </div>
+
 <footer class="site-footer">
-    created by Submitpro|NoxoloNyatela
+    <div class="footer-content">
+        <div class="footer-text">Luxury Glam Salon</div>
+        <div class="footer-credits">
+            <span>Created by</span>
+            <a href="#" title="Professional Solutions">Submitpro</a>
+            <span class="footer-divider">×</span>
+            <a href="#" title="Designer & Developer">Noxolo Nyatela</a>
+        </div>
+    </div>
 </footer>
+
 <script>
 const PRODUCTS = [
     {
